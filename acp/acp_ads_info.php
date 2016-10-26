@@ -21,9 +21,12 @@ class acp_ads_info
 		return array(
 			'filename'	=> '\bb3mobi\ads\acp\acp_ads_module',
 			'title'		=> 'ACP_ADVERTISEMENT_MANAGEMENT',
-			'version'	=> '1.0.0',
 			'modes'		=> array(
-				'default'		=> array('title' => 'ACP_ADVERTISEMENT_MANAGEMENT', 'auth' => 'ext_bb3mobi/ads && acl_a_ads', 'cat' => array('ACP_BOARD_CONFIGURATION')),
+				'settings'	=> array(
+					'title' => 'ACP_ADVERTISEMENT_MANAGEMENT',
+					'auth' => 'ext_bb3mobi/ads && acl_a_board',
+					'cat' => array('ACP_ADVERTISEMENT_MANAGEMENT')
+				),
 			),
 		);
 	}

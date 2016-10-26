@@ -122,6 +122,11 @@ class v_1_1_0 extends \phpbb\db\migration\migration
 				$this->table_prefix . 'ads_in_pos',
 				$this->table_prefix . 'ads_positions',
 			),
+			'drop_columns'        => array(
+            	$this->table_prefix . 'users' => array(
+                	'ad_owner',
+            	),
+            ),
 		);
 	}
 
@@ -148,12 +153,20 @@ class v_1_1_0 extends \phpbb\db\migration\migration
 			array('permission.permission_set', array('ROLE_ADMIN_FULL', 'a_ads')),
 
 			// Add ACP modules
-			array('module.add', array('acp', 'ACP_BOARD_CONFIGURATION', array(
-				'module_basename'	=> '\bb3mobi\ads\acp\acp_ads_module',
-				'module_langname'	=> 'ACP_ADVERTISEMENT_MANAGEMENT',
-				'module_mode'		=> 'default',
-				'module_auth'		=> 'ext_bb3mobi/ads && acl_a_ads',
-			))),
+			array('module.add', array(
+				'acp',
+				'ACP_CAT_DOT_MODS',
+				'ACP_ADVERTISEMENT_MANAGEMENT'
+			)),
+			array('module.add', array(
+				'acp',
+				'ACP_ADVERTISEMENT_MANAGEMENT',
+				array(
+					'module_basename'	=> '\bb3mobi\ads\acp\acp_ads_module',
+					'auth'				=> 'ext_bb3mobi\ads && acl_a_board',
+					'modes'				=> array('settings'),
+				),
+			)),
 
 			array('custom', array(array(&$this, 'ads_install'))),
 		);
@@ -179,7 +192,20 @@ class v_1_1_0 extends \phpbb\db\migration\migration
 			array('permission.remove', array('a_ads')),
 
 			// Remove from ACP modules
-			array('module.remove', array('acp', 'ACP_ADVERTISEMENT_MANAGEMENT')),
+			array('module.remove', array(
+				'acp',
+				'ACP_CAT_DOT_MODS',
+				'ACP_ADVERTISEMENT_MANAGEMENT'
+			)),
+			array('module.remove', array(
+				'acp',
+				'ACP_ADVERTISEMENT_MANAGEMENT',
+				array(
+					'module_basename'	=> '\bb3mobi\ads\acp\acp_ads_module',
+					'auth'				=> 'ext_bb3mobi\ads && acl_a_board',
+					'modes'				=> array('settings'),
+				),
+			)),			
 		);
 	}
 
