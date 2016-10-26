@@ -17,6 +17,11 @@
             "name": "Anvar",
             "homepage": "http://bb3.mobi",
             "role": "Converting to extension"
+        },
+        {
+            "name": "jcocking",
+            "homepage": "https://www.cocking.com",
+            "role": "Enhancing extension"
         }
     ],
     "require": {
@@ -29,6 +34,12 @@
         "display-name": "Advertisement Management",
         "soft-require": {
         "phpbb/phpbb": "3.1.*@dev"
+        },
+        "version-check": {
+            "host": "www.cocking.com",
+            "directory": "/phpbb-ext/ads",
+            "filename": "version-check.html",
+            "ssl": "true"
         }
     }
 }
