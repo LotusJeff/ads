@@ -5,7 +5,7 @@
 * @version $Id: info_acp_ads.php 49 2008-08-27 03:23:18Z exreaction@gmail.com $
 * @copyright (c) 2008 EXreaction, Lithium Studios
 * @port in phpBB3.1 BB3.Mobi 2015 (c) Anvar(http://apwa.ru)
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License 
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
 

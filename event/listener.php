@@ -129,7 +129,7 @@ class listener implements EventSubscriberInterface
 			);
 		}
 	}
-	
+
 		/**
 	 * Add permissions
 	 *

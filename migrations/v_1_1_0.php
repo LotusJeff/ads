@@ -123,10 +123,10 @@ class v_1_1_0 extends \phpbb\db\migration\migration
 				$this->table_prefix . 'ads_positions',
 			),
 			'drop_columns'        => array(
-            	$this->table_prefix . 'users' => array(
-                	'ad_owner',
-            	),
-            ),
+				$this->table_prefix . 'users' => array(
+					'ad_owner',
+				),
+			),
 		);
 	}
 
@@ -205,7 +205,7 @@ class v_1_1_0 extends \phpbb\db\migration\migration
 					'auth'				=> 'ext_bb3mobi\ads && acl_a_board',
 					'modes'				=> array('settings'),
 				),
-			)),			
+			)),
 		);
 	}
 
