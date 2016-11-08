@@ -267,6 +267,18 @@ class helper
 			}
 			$this->db->sql_freeresult($result);
 
+			// obtain custom style data
+			$result = $this->db->sql_query('SELECT * FROM ' . ADS_POSITIONS_TABLE );
+			while ($row = $this->db->sql_fetchrow($result))
+			{
+				$position_data[$row['position_id']] = array(
+													'position_style' => $row['position_style'],
+													'position_style_in' => $row['position_style_in'],
+													'position_style_out' => $row['position_style_out'],
+													);
+			}
+			$this->db->sql_freeresult($result);
+
 			foreach ($available_ads as $position_id => $ad_id)
 			{
 				$code = htmlspecialchars_decode($ads[$ad_id]['ad_code']);
@@ -277,7 +289,14 @@ class helper
 					$code = '<script type="text/javascript" >countAdView(' . $ad_id . ')</script>' . $code;
 				}
 
-				$return_list[$position_id] = $code;
+//				$return_list[$position_id] = $code;
+				$return_list[$position_id] = array(
+											'code'				=> $code,
+											'position_style'	=> $position_data[$position_id]['position_style'],
+											'position_style_out'	=> $position_data[$position_id]['position_style_out'],
+											'position_style_in'	=> $position_data[$position_id]['position_style_in'],
+											);
+
 			}
 
 			if ($this->config['ads_count_views'] && !$this->config['ads_accurate_views'])

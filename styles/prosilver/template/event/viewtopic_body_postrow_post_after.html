@@ -1,12 +1,20 @@
 <!-- IF (ADS_5 and postrow.S_FIRST_ROW) or (ADS_6 and not postrow.S_FIRST_ROW) -->
-<div class="post bg3" id="post_ads">
-	<div class="inner">
-		<div class="postprofile"id="profile_ads">{L_ADVERTISEMENT}</div>
-		<div class="postbody">
-			<div class="content adsm_block">
-				<!-- IF postrow.S_FIRST_ROW -->{ADS_5}<!-- ELSE -->{ADS_6}<!-- ENDIF -->
-			</div>
-		</div>
-	</div>
-</div>
+    <!-- IF S_ADS_STYLE_5 OR S_ADS_STYLE_6 -->
+    <div class="post bg3" id="post_ads">
+    	<div class="inner">
+    		<div class="postprofile"id="profile_ads">{L_ADVERTISEMENT}</div>
+    		<div class="postbody">
+    			<div class="content adsm_block">
+    				<!-- IF postrow.S_FIRST_ROW -->{ADS_5}<!-- ELSE -->{ADS_6}<!-- ENDIF -->
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    <!-- ELSEIF-->
+        <!-- IF postrow.S_FIRST_ROW -->
+        <div class="outer_place_{ADS_ID_5}" style="{ADS_STYLE_OUT_5}"><div class="inner_place_{ADS_ID_5}" style="{ADS_STYLE_IN_5}">{ADS_5}</div></div>
+        <!-- ELSE -->
+        <div class="outer_place_{ADS_ID_6}" style="{ADS_STYLE_OUT_6}"><div class="inner_place_{ADS_ID_6}" style="{ADS_STYLE_IN_6}">{ADS_6}</div></div>
+        <!-- ENDIF -->
+    <!-- ENDIF -->
 <!-- ENDIF -->

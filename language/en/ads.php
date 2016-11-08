@@ -133,12 +133,20 @@ $lang = array_merge($lang, array(
 
 	'POSITION'									=> 'Position',
 	'POSITION_CODE'								=> 'Position Code',
+	'POSITION_STYLE'							=> 'Default Style',
+	'POSITION_STYLE_EXPLAIN'					=> 'Use Prosilver styling. Unchecked allows for customer styling.',
+	'POSITION_STYLE_OUT'						=> 'Outer Div Style',
+	'POSITION_STYLE_OUT_EXPLAIN'				=> 'Enter CSS style options for the Outer div.',
+	'POSITION_STYLE_IN'							=> 'Inner Div Style',
+	'POSITION_STYLE_IN_EXPLAIN'					=> 'Enter CSS style options for the Inner div.',
 	'POSITION_EDIT_SUCCESS'						=> 'Position Edited Successfully!',
 	'POSITION_NAME'								=> 'Position Name',
 	'POSITION_NAME_EXPLAIN'						=> 'The name of the position.',
 	'POSITION_NOT_EXIST'						=> 'The selected position does not exist.',
 	'POSTITION_ADD_SUCCESS'						=> 'Position Added Successfully!',
 	'POSTITION_ALREADY_EXIST'					=> 'You already have a position by that name.',
+	'POSITION_STYLE_CUSTOM'						=> 'Custom',
+	'POSITION_STYLE_DEFAULT'					=> 'Default',
 
 	'TRUE'										=> 'True',
 ));

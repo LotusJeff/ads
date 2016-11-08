@@ -113,6 +113,9 @@ class acp_ads_module
 		$ad_forums = $request->variable('ad_forums', array(0), true);
 		$ad_positions = $request->variable('ad_positions', array(0), true);
 		$position_name = $request->variable('position_name', '', true);
+		$position_style = (isset($_POST['position_style'])) ? true : false;
+		$position_style_out = htmlspecialchars_decode($request->variable('position_style_out', '', true));
+		$position_style_in = htmlspecialchars_decode($request->variable('position_style_in', '', true));
 		$ad_owner = utf8_normalize_nfc($request->variable('ad_owner', '', true));
 		$ad_owner_id = 0;
 
@@ -130,7 +133,7 @@ class acp_ads_module
 				{
 					if (($action == 'edit' || $action == 'copy') && !$position_data)
 					{
-						trigger_error($user->lang['POSITION_NOT_EXIST'] . adm_back_link($this->u_action));
+						trigger_error($user->lang['POSITION_NOT_EXIST'] . adm_back_link($this->u_action),E_USER_WARNING);
 					}
 
 					if ($action == 'add')
@@ -140,31 +143,51 @@ class acp_ads_module
 						$result = $db->sql_query($sql);
 						if ($db->sql_fetchrow($result))
 						{
-							trigger_error($user->lang['POSTITION_ALREADY_EXIST'] . adm_back_link($this->u_action));
+							trigger_error($user->lang['POSTITION_ALREADY_EXIST'] . adm_back_link($this->u_action),E_USER_WARNING);
 						}
 
-						$db->sql_query('INSERT INTO ' . ADS_POSITIONS_TABLE . ' ' . $db->sql_build_array('INSERT', array('lang_key' => $position_name)));
+						$sql_ary = array(
+							'lang_key' 			=> $position_name,
+						);
+
+						$db->sql_query('INSERT INTO ' . ADS_POSITIONS_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_ary));
 					}
 					else
 					{
-						if ($submit && $position_name != $position_data['lang_key'])
+						if ($submit)
 						{
-							// Make sure the given position name isn't already in the database.
-							$sql = 'SELECT position_id FROM ' . ADS_POSITIONS_TABLE . ' WHERE lang_key = \'' . $db->sql_escape($position_name) . "'";
-							$result = $db->sql_query($sql);
-							if ($db->sql_fetchrow($result))
+							if ($position_name != $position_data['lang_key'])
 							{
-								trigger_error($user->lang['POSTITION_ALREADY_EXIST'] . adm_back_link($this->u_action));
+								// Make sure the given position name isn't already in the database.
+								$sql = 'SELECT position_id FROM ' . ADS_POSITIONS_TABLE . ' WHERE lang_key = \'' . $db->sql_escape($position_name) . "'";
+								$result = $db->sql_query($sql);
+								if ($db->sql_fetchrow($result))
+								{
+									trigger_error($user->lang['POSTITION_ALREADY_EXIST'] . adm_back_link($this->u_action),E_USER_WARNING);
+								}
 							}
 
-							$db->sql_query('UPDATE ' . ADS_POSITIONS_TABLE . ' SET ' . $db->sql_build_array('UPDATE', array('lang_key' => $position_name)) . ' WHERE position_id = ' . $position_id);
+							$eols = array(",","\n","\r","\r\n");
+							$position_style_out = trim(str_replace($eols,'', $position_style_out));
+							$position_style_in = trim(str_replace($eols,'', $position_style_in));
+
+							$sql_ary = array(
+								'lang_key' 			=> $position_name,
+								'position_style'	=> $position_style,
+								'position_style_out'	=> $position_style_out,
+								'position_style_in'	=> $position_style_in,
+							);		
+
+							$db->sql_query('UPDATE ' . ADS_POSITIONS_TABLE . ' SET ' . $db->sql_build_array('UPDATE', $sql_ary) . ' WHERE position_id = ' . $position_id);
 						}
 						else
 						{
 							$template->assign_vars(array(
 								'S_EDIT_POSITION'	=> true,
-
 								'POSITION_NAME'		=> $position_data['lang_key'],
+								'POSITION_STYLE'	=> $position_data['position_style'],
+								'POSITION_STYLE_OUT'	=> $position_data['position_style_out'],
+								'POSITION_STYLE_IN'	=> $position_data['position_style_in'],
 							));
 						}
 					}
@@ -180,7 +203,7 @@ class acp_ads_module
 				{
 					if (($action == 'edit' || $action == 'copy') && !$ad_data)
 					{
-						trigger_error($user->lang['AD_NOT_EXIST'] . adm_back_link($this->u_action));
+						trigger_error($user->lang['AD_NOT_EXIST'] . adm_back_link($this->u_action),E_USER_WARNING);
 					}
 
 					// Check for errors
@@ -409,7 +432,7 @@ class acp_ads_module
 							$template->assign_block_vars('positions', array(
 								'POSITION_ID'	=> $row['position_id'],
 								'POSITION_NAME'	=> (isset($user->lang[$row['lang_key']])) ? $user->lang[$row['lang_key']] : $row['lang_key'],
-
+								'POSITION_STYLE' => $row['position_style'],
 								'S_SELECTED'	=> (in_array($row['position_id'], ((($action == 'edit' || $action == 'copy') && !$submit) ? $ad_data['positions'] : $ad_positions))) ? true : false,
 							));
 						}
@@ -551,6 +574,7 @@ class acp_ads_module
 							'POSTITION_ID'		=> $row['position_id'],
 							'POSITION_NAME'		=> (isset($user->lang[$row['lang_key']])) ? $user->lang[$row['lang_key']] : $row['lang_key'],
 							'POSITION_CODE'		=> '{ADS_' . $row['position_id'] . '}',
+							'POSITION_STYLE'	=> ($row['position_style']) ? $user->lang['POSITION_STYLE_DEFAULT'] : $user->lang['POSITION_STYLE_CUSTOM'],
 
 							'U_EDIT'			=> $this->u_action . '&amp;action=edit&amp;p=' . $row['position_id'],
 							'U_DELETE'			=> $this->u_action . '&amp;action=delete&amp;p=' . $row['position_id'],

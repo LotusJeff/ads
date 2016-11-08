@@ -156,7 +156,36 @@
 				<dt><label for="position_name">{L_POSITION_NAME}{L_COLON}</label><br /><span>{L_POSITION_NAME_EXPLAIN}</span></dt>
 				<dd><input class="medium" type="text" id="position_name" name="position_name" size="25" maxlength="255" value="{POSITION_NAME}" /></dd>
 			</dl>
+			<dl>
+				<dt><label for="position_style">{L_POSITION_STYLE}{L_COLON}</label><br /><span>{L_POSITION_STYLE_EXPLAIN}</span></dt>
+				<dd><input type="checkbox" class="radio" id="position_style" name="position_style" value="1"<!-- IF POSITION_STYLE --> checked="checked"<!-- ENDIF --> onclick="switch_position_box();" /></dd>
+			</dl>
+			<dl id="ad_position_box">
+				<dt><label for="position_style_out">{L_POSITION_STYLE_OUT}{L_COLON}</label><br /><span>{L_POSITION_STYLE_OUT_EXPLAIN}</span></dt>
+				<dd><textarea id="position_style_out" name="position_style_out" cols="60" rows="8">{POSITION_STYLE_OUT}</textarea></dd>
+			</dl>
+			<dl id="ad_position_box1">
+				<dt><label for="position_style_in">{L_POSITION_STYLE_IN}{L_COLON}</label><br /><span>{L_POSITION_STYLE_IN_EXPLAIN}</span></dt>
+				<dd><textarea id="position_style_in" name="position_style_in" cols="60" rows="8">{POSITION_STYLE_IN}</textarea></dd>
+			</dl>
 		</fieldset>
+		<script type="text/javascript">
+		window.onload = switch_position_box();
+
+		function switch_position_box()
+		{
+			if (document.getElementById('position_style').checked == true)
+			{
+				document.getElementById('ad_position_box').style.display = 'none';
+				document.getElementById('ad_position_box1').style.display = 'none';
+			}
+			else
+			{
+				document.getElementById('ad_position_box').style.display = 'block';
+				document.getElementById('ad_position_box1').style.display = 'block';
+			}
+		}
+		</script>
 	<!-- ENDIF -->
 
 	<fieldset class="submit-buttons">
@@ -181,12 +210,14 @@
 	<tr>
 		<th style="width: 75%">{L_POSITION_NAME}</th>
 		<th style="width: 100px">{L_POSITION_CODE}</th>
-		<th>{L_ACTION}</th>
+		<th style="width: 100px">{L_POSITION_STYLE}</th>
+		<th style="text-align: center;">{L_ACTION}</th>
 	</tr>
 	<!-- BEGIN positions -->
 		<tr class="<!-- IF positions.S_ROW_COUNT is even -->col2<!-- ELSE -->col1<!-- ENDIF -->">
 			<td><strong>{positions.POSITION_NAME}</strong></td>
 			<td style="text-align: center;">{positions.POSITION_CODE}</td>
+			<td style="text-align: center;">{positions.POSITION_STYLE}</td>
 			<td style="text-align: center;"><a href="{positions.U_EDIT}">{L_EDIT}</a> | <a href="{positions.U_DELETE}">{L_DELETE}</a></td>
 		</tr>
 	<!-- BEGINELSE -->

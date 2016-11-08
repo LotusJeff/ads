@@ -86,11 +86,15 @@ class listener implements EventSubscriberInterface
 
 		if (sizeof($this->ads))
 		{
-			foreach ($this->ads as $position_id => $code)
+			foreach ($this->ads as $position_id => $style_data)
 			{
 				$this->template->assign_vars(array(
 					'ADS_ID_' . $position_id	=> $position_id,
-					'ADS_' . $position_id		=> $code)
+					'ADS_' . $position_id		=> $style_data['code'],
+					'S_ADS_STYLE_' . $position_id		=> $style_data['position_style'],
+					'ADS_STYLE_IN_' . $position_id		=> $style_data['position_style_in'],
+					'ADS_STYLE_OUT_' . $position_id		=> $style_data['position_style_out'],
+					)
 				);
 			}
 		}
@@ -98,6 +102,7 @@ class listener implements EventSubscriberInterface
 
 	public function my_ads()
 	{
+
 		if (sizeof($this->ads) || (isset($this->user->data['ad_owner']) && $this->user->data['ad_owner']))
 		{
 			global $phpbb_container;
