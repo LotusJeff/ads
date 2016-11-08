@@ -176,7 +176,7 @@ class acp_ads_module
 								'position_style'	=> $position_style,
 								'position_style_out'	=> $position_style_out,
 								'position_style_in'	=> $position_style_in,
-							);		
+							);
 
 							$db->sql_query('UPDATE ' . ADS_POSITIONS_TABLE . ' SET ' . $db->sql_build_array('UPDATE', $sql_ary) . ' WHERE position_id = ' . $position_id);
 						}

@@ -95,8 +95,8 @@ class v_1_1_0 extends \phpbb\db\migration\migration
 						'position_id'	=> array('UINT', null, 'auto_increment'),
 						'lang_key'		=> array('TEXT_UNI', ''),
 						'position_style'	=> array('BOOL', 1),
-						'position_style_out'	=> array('MTEXT_UNI', NULL),
-						'position_style_in'	=> array('MTEXT_UNI', NULL),
+						'position_style_out'	=> array('MTEXT_UNI', null),
+						'position_style_in'	=> array('MTEXT_UNI', null),
 					),
 					'PRIMARY_KEY'	=> 'position_id',
 				),
@@ -237,7 +237,7 @@ class v_1_1_0 extends \phpbb\db\migration\migration
 				'position_style'	=> 1,
 				'position_style_out'	=> '',
 				'position_style_in'	=> '',
-			);	
+			);
 
 			$this->db->sql_query('INSERT INTO ' . $this->table_prefix . 'ads_positions ' . $this->db->sql_build_array('INSERT', $sql_ary));
 		}

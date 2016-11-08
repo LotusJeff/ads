@@ -117,7 +117,7 @@ class listener implements EventSubscriberInterface
 				$my_ads .= '<a href="' . $u_my_ads . '" class="button">' . $this->user->lang['MY_ADS'] . '</a>';
 			}
 
-			$my_ads .= (!$my_ads) ? '<br />' . $this->user->lang['ADVERTISEMENT_MANAGEMENT_CREDITS'] : '';
+			//$my_ads .= (!$my_ads) ? '<br />' . $this->user->lang['ADVERTISEMENT_MANAGEMENT_CREDITS'] : '';
 			if (!empty($this->tpldata['.'][0]['ADS_8']))
 			{
 				$this->tpldata['.'][0]['ADS_8'] .= '<br /><br />' . $my_ads;

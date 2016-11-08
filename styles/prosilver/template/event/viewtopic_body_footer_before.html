@@ -1,16 +1,20 @@
 <!-- IF ADS_4 -->
-<br />
-<div class="forabg">
-	<div class="inner">
-		<ul class="topiclist">
-			<li class="header">
-				<dl class="icon">
-					<dt>{L_ADVERTISEMENT}</dt>
-				</dl>
-			</li>
-		</ul>
-		<div class="content adsm_block">{ADS_4}</div>
-	</div>
-</div>
-<br />
+	<!-- IF S_ADS_STYLE_4 -->
+		<br />	
+		<div class="forabg">
+			<div class="inner">
+				<ul class="topiclist">
+					<li class="header">
+						<dl class="icon">
+							<dt>{L_ADVERTISEMENT}</dt>
+						</dl>
+					</li>
+				</ul>
+				<div class="content adsm_block">{ADS_4}</div>
+			</div>
+		</div>
+		<br />
+	<!-- ELSE -->
+		<div class="outer_place_{ADS_ID_4}" style="{ADS_STYLE_OUT_4}"><div class="inner_place_{ADS_ID_4}" style="{ADS_STYLE_IN_4}">{ADS_4}</div></div>
+	<!-- ENDIF -->
 <!-- ENDIF -->
