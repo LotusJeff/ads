@@ -113,27 +113,40 @@ $lang = array_merge($lang, array(
 	'AD_VIEWS'									=> 'Показы',
 	'AD_VIEWS_EXPLAIN'							=> 'Количество показов рекламы',
 	'ALL_FORUMS_EXPLAIN'						=> 'Выбрать для показа во всех форумах. Реклама не показывается на страницах не относящихся к форуму, например FAQ и т.д.',
+
 	'CREATE_AD'									=> 'Создать рекламу',
 	'CREATE_POSITION'							=> 'Создать область показа',
 	'COPY'										=> 'Копировать',
+
 	'DELETE_AD'									=> 'Удалить рекламу',
 	'DELETE_AD_CONFIRM'							=> 'Удаление рекламы, продолжить?',
 	'DELETE_AD_SUCCESS'							=> 'Реклама удалена',
 	'DELETE_POSITION'							=> 'Удалить область показа',
 	'DELETE_POSITION_CONFIRM'					=> 'Удаление области показа, продолжить?',
 	'DELETE_POSITION_SUCCESS'					=> 'Область показа удалена',
+
 	'FALSE'										=> 'Нет',
+
 	'NO_ADS_CREATED'							=> 'Реклама не создана',
 	'NO_AD_NAME'								=> 'Необходимо указать имя рекламы',
 	'NO_POSITIONS_CREATED'						=> 'Область показа не создана',
+
 	'POSITION'									=> 'Область показа',
 	'POSITION_CODE'								=> 'Код области показа',
+	'POSITION_STYLE'							=> 'Стиль по умолчанию',
+	'POSITION_STYLE_EXPLAIN'					=> 'Использовать стиль Prosilver. Снимите отметку для заказных стилей.',
+	'POSITION_STYLE_OUT'						=> 'Внешний стиль Div',
+	'POSITION_STYLE_OUT_EXPLAIN'				=> 'Укажите CSS стили для внешнего div.',
+	'POSITION_STYLE_IN'							=> 'Внутренний стиль Div',
+	'POSITION_STYLE_IN_EXPLAIN'					=> 'Укажите CSS стили для внутреннего div.',
 	'POSITION_EDIT_SUCCESS'						=> 'Область показа изменена',
 	'POSITION_NAME'								=> 'Имя области показа',
 	'POSITION_NAME_EXPLAIN'						=> 'Название области показа',
 	'POSITION_NOT_EXIST'						=> 'Указанная область показа не существует',
 	'POSTITION_ADD_SUCCESS'						=> 'Область показа добавлена!',
 	'POSTITION_ALREADY_EXIST'					=> 'Имя области показа уже существует',
+	'POSITION_STYLE_CUSTOM'						=> 'Заказной',
+	'POSITION_STYLE_DEFAULT'					=> 'По умолчанию',
 
 	'TRUE'										=> 'Да',
 ));
